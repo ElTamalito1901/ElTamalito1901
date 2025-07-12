@@ -1,0 +1,47 @@
+
+/* Tamaños de texto */
+body.text-small {
+  font-size: 12px;
+}
+
+body.text-normal {
+  font-size: 16px;
+}
+
+body.text-large {
+  font-size: 20px;
+}
+
+/* Alto contraste */
+body.high-contrast {
+  background-color: #ffffff;
+  color: #ffffff;
+}
+
+body.high-contrast .config-section,
+body.high-contrast button,
+body.high-contrast select,
+body.high-contrast input,
+body.high-contrast .header {
+  background-color: #222;
+  color: #ffffff;
+  border-color: #fff;
+}
+
+body.high-contrast .toggle-switch .slider {
+  background-color: #FF6B35;
+}
+
+body.high-contrast .save-btn {
+  background-color: #FF6B35;
+  color: #ffffff;
+}
+
+/* Opcional: mejora contraste en sliders */
+body.high-contrast input[type="range"] {
+  background: #555;
+}
+
+body.high-contrast .config-section {
+  background: #222; /* oscuro */
+}

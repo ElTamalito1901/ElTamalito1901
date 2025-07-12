@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SazónApp - Únete como Partner</title>
+    <link rel="stylesheet" href="../css/registropartner.css">
+</head>
+<body>
+    <header class="header">
+        <button class="back-btn" onclick="goBack()">← Ir atrás</button>
+        <div class="logo">
+            <div class="logo-icon">
+        <img src="../imagenes/LogoSazonApp.png" alt="Logo" class="logo-img">
+        </div>
+
+            <span class="logo-text">SazónApp</span>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="content-left">
+            <h1 class="main-title">
+                Únete como<br>
+                <span class="highlight">Partner Vendedor</span><br>
+                en SazónApp
+            </h1>
+            <p class="subtitle">
+                Aumenta tus ventas y llega a más clientes con nuestra plataforma. 
+                Gestión fácil, entregas rápidas y comisiones competitivas.
+            </p>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+                    <span>Aumenta tus ventas hasta un 40%</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <span>Sistema de delivery integrado</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <span>Panel de control intuitivo</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <span>Comisiones competitivas</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⭐</div>
+                    <span>Soporte 24/7 para partners</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="registration-form">
+            <div class="form-header">
+                <h2 class="form-title">
+                    🤝 Regístrate como Partner
+                </h2>
+                <p class="form-subtitle">Completa tus datos para comenzar</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                ¡Registro exitoso! Te contactaremos pronto para activar tu cuenta.
+            </div>
+
+            <form id="partnerForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Nombre del restaurante *" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Nombre del propietario *" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Correo electrónico *" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" class="form-input" placeholder="Teléfono de contacto *" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Dirección del restaurante *" required>
+                </div>
+                
+                <div class="form-group">
+                    <select class="form-select" required>
+                        <option value="">Tipo de cocina *</option>
+                        <option value="peruana">Cocina Peruana</option>
+                        <option value="italiana">Cocina Italiana</option>
+                        <option value="china">Cocina China</option>
+                        <option value="mexicana">Cocina Mexicana</option>
+                        <option value="japonesa">Cocina Japonesa</option>
+                        <option value="americana">Comida Rápida</option>
+                        <option value="vegetariana">Vegetariana/Vegana</option>
+                        <option value="postres">Postres y Dulces</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="RUC (opcional)">
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="loading">⏳</span>
+                    <span>🚀 COMENZAR COMO PARTNER</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/registropartner.js"></script>
+</body>
+</html>

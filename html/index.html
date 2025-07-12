@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sazón App</title>
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/whatsapp.css">
+</head>
+
+<body>
+ <header>
+    <!-- Imagen de la barra menú -->
+    <img src="../imagenes/menuboton.png" alt="Menú" class="open-btn" onclick="openMenu()">
+
+      <div id="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Logo de la página -->
+    <a href="../html/index.html">
+      <img src="../imagenes/LogoSazonApp.png" alt="Logo" class="logo">
+    </a>
+
+    <!-- MENÚ DE LUGARES -->
+    <div class="ubicacion-container">
+      <div class="ubicacion-header">
+        <button onclick="abrirModalUbicacion()" class="ubicacion-btn">
+          <img src="../imagenes/ubicacion.png" alt="Ubicación">
+          <span id="ubicacion-actual">Ubicación</span>
+          <img id="flecha" src="../imagenes/flechaabajo.png" alt="Flecha abajo" width="40">
+        </button>
+      </div>
+    </div>
+
+    <div id="modalUbicacion" class="modalubi">
+      <div class="modal-contenido">
+        <span class="cerrar-modal" onclick="cerrarModalUbicacion()">&times;</span>
+        <h2>Ingresa tu ubicación</h2>
+        <form id="formUbicacion">
+          <label>Distrito:</label>
+          <select id="distrito" required>
+            <option value="">Seleccionar</option>
+            <option value="Ancón">Ancón</option>
+            <option value="Ate">Ate</option>
+            <option value="Barranco">Barranco</option>
+            <option value="Breña">Breña</option>
+            <option value="Callao">Callao</option>
+            <option value="Carabayllo">Carabayllo</option>
+            <option value="Cercado de Lima">Cercado de Lima</option>
+            <option value="Chaclacayo">Chaclacayo</option>
+            <option value="Chorrillos">Chorrillos</option>
+            <option value="Cieneguilla">Cieneguilla</option>
+            <option value="Comas">Comas</option>
+            <option value="El Agustino">El Agustino</option>
+            <option value="Independencia">Independencia</option>
+            <option value="Jesús María">Jesús María</option>
+            <option value="La Molina">La Molina</option>
+            <option value="La Victoria">La Victoria</option>
+            <option value="Lince">Lince</option>
+            <option value="Los Olivos">Los Olivos</option>
+            <option value="Lurigancho">Lurigancho</option>
+            <option value="Lurín">Lurín</option>
+            <option value="Magdalena del Mar">Magdalena del Mar</option>
+            <option value="Miraflores">Miraflores</option>
+            <option value="Pachacámac">Pachacámac</option>
+            <option value="Pucusana">Pucusana</option>
+            <option value="Pueblo Libre">Pueblo Libre</option>
+            <option value="Puente Piedra">Puente Piedra</option>
+            <option value="Punta Hermosa">Punta Hermosa</option>
+            <option value="Punta Negra">Punta Negra</option>
+            <option value="Rímac">Rímac</option>
+            <option value="San Bartolo">San Bartolo</option>
+            <option value="San Borja">San Borja</option>
+            <option value="San Isidro">San Isidro</option>
+            <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+            <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+            <option value="San Luis">San Luis</option>
+            <option value="San Martín de Porres">San Martín de Porres</option>
+            <option value="San Miguel">San Miguel</option>
+            <option value="Santa Anita">Santa Anita</option>
+            <option value="Santa María del Mar">Santa María del Mar</option>
+            <option value="Santa Rosa">Santa Rosa</option>
+            <option value="Santiago de Surco">Santiago de Surco</option>
+            <option value="Surquillo">Surquillo</option>
+            <option value="Villa El Salvador">Villa El Salvador</option>
+            <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+          </select>
+
+          <label>Urbanización:</label>
+          <input type="text" id="urbanizacion" required>
+
+          <label>Manzana:</label>
+          <input type="text" id="manzana" required>
+
+          <label>Número de calle:</label>
+          <input type="text" id="numeroCalle" required>
+
+          <label>Referencia (Opcional):</label>
+          <input type="text" id="referencia" placeholder="Ej. Frente al parque">
+
+          <button type="submit">Guardar ubicación</button>
+          <p id="mensajeExito" style="display: none; color: green; font-weight: bold; text-align: center; margin-top: 10px;">
+            ✅ Ubicación guardada correctamente
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="busqueda-container">
+      <img src="../imagenes/platobarra.png" alt="Plato" class="icono-izquierda">
+      <input type="text" id="inputBusqueda" class="buscador" placeholder="Busca tu comida, postres o restaurantes favorito aquí...">
+      <div id="dropdownBusqueda" class="dropdown-busqueda"></div>
+      <img src="../imagenes/busqueda.png" alt="Buscar" class="icono-derecha">
+    </div>
+
+    <!-- Imagen para ingresar al perfil -->
+    <div class="usuario-container" id="usuario-container">
+      <button class="usuario-boton" id="btnUsuario">
+        <img src="../imagenes/usuario.png" alt="Usuario" class="usuario-img">
+        <span id="usuario-nombre" class="usuario-texto">Ingreso</span>
+      </button>
+      <div class="usuario-menu" id="usuario-menu" style="display: none;">
+        <a href="../html/perfil.html">👤 Mi cuenta</a>
+        <a href="../html/configuracion.html">⚙️ Configuración</a>
+        <a href="#" id="cerrarSesion">🚪 Cerrar sesión</a>
+      </div>
+    </div>
+
+    <!-- Imagen del carrito de compra -->
+    <button class="demo-button" onclick="toggleCart()">
+      <img src="../imagenes/carrito.png" class="carrito-btn" alt="carrito">
+    </button>
+
+    <!-- Sidebar carrito COMPLETO -->
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <div class="cart-title">
+          <svg class="cart-icon" viewBox="0 0 24 24">
+            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          TU CARRITO
+        </div>
+        <button class="close-btn" onclick="closeCart()">&times;</button>
+      </div>
+
+      <div class="delivery-address">
+        <div class="address-text">
+          <svg class="location-icon" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span id="ubicacion-sidecart">Ubicación</span>
+        </div>
+      </div>
+
+<div id="sidecart-restaurant-info" style="display: none;">
+  <div class="restaurant-details">
+    <div id="sidecart-restaurant-logo"></div>
+    <div id="sidecart-restaurant-name"></div>
+    <div id="sidecart-restaurant-type"></div>
+  </div>
+</div>
+
+      <div class="cart-items">
+        <div class="cart-item">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' fill='%23ffa500'/%3E%3Ctext x='30' y='35' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3E🍗🍟%3C/text%3E%3C/svg%3E" alt="Pollo a la brasa" class="item-image">
+          <div class="item-details">
+            <div class="item-name"></div>
+            <div class="item-price"></div>
+            <div class="quantity-controls">
+              <button class="quantity-btn minus" onclick="updateQuantity(-1)">-</button>
+              <span class="quantity-display" id="quantity"></span>
+              <button class="quantity-btn plus" onclick="updateQuantity(1)">+</button>
+              <span style="margin-left: 10px; font-size: 14px; color: #666;">LIMIT +</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="empty-cart-message" id="emptyCartMessage" style="display: none; text-align: center; padding: 20px;">
+  <p style="margin-bottom: 15px; font-weight: bold; color: #ff6b35;">
+    ¡Tu carrito está vacío!
+  </p>
+  <button id="btnIrAComprar" class="checkout-btn" onclick="irAPago()">
+    IR A PAGAR
+  </button>
+</div>
+
+<div class="cart-footer">
+  <div class="total-section">
+    <div class="total-text" id="totalText"></div>
+  </div>
+  <button class="checkout-btn" id="btnPagar" onclick="irAPago()">
+    IR A PAGAR
+  </button>
+  <button class="clear-cart-btn">
+    <svg class="trash-icon" viewBox="0 0 24 24">
+      <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+    </svg>
+    Vaciar todo el carrito
+  </button>
+</div>
+
+
+  
+
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <img src="../imagenes/logoinvertido.png" alt="Logo" class="logo-sidebar">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+      </div>
+      <nav class="sidebar-menu">
+        <ul>
+          <li id="opcionesNoLogueado" style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+            <a href="login.html" id="btnIngresar">Ingresar</a>
+            <a href="registro.html" id="btnRegistrar">Registrar</a>
+          </li>
+        </ul>
+        <hr style="margin: 10px 20px; border-color: rgba(255,255,255,0.3);">
+        <ul>
+          <li><a href="../html/Dashboard.html">Dashboard</a></li>
+          <li id="opcionPerfil"><a href="../html/perfil.html">Perfil</a></li>
+          <li><a href="../html/configuracion.html">Configuración</a></li>
+          <li><a href="../html/registropartner.html">Hazte Partner</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+<div class="banner-rotator">
+  <a href="../html/Laddingpage1.html" class="banner-link active">
+    <div class="banner-container banner-1">
+      <div class="banner-image">
+        <img src="../imagenes/laddinpage.png" alt="Comida deliciosa">
+      </div>
+      <div class="banner-text">
+        <span class="frase">TU COMIDA FAVORITA A SOLO UN CLICK, DESCÚBRELO CON SAZÓN APP</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="../html/Laddingpage2.html" class="banner-link">
+    <div class="banner-container banner-2">
+      <div class="banner-image">
+        <img src="../imagenes/laddinpage.png" alt="Otra comida">
+      </div>
+      <div class="banner-text">
+        <span class="frase">AL REGISTRARTE, TE REGALAMOS TU PRIMERA COMPRA!</span>
+      </div>
+    </div>
+  </a>
+</div>
+    <div class="Centropollotextoyfamilia">
+    <section class="contenido-flex">
+   <div class="imagen-y-texto">
+      <div class="imagen-pollo">
+       <img src="../imagenes/pollopollito.png" alt="Pollo Pollito">
+      </div>
+      <div class="texto-lateral">
+            <h2>¡DESCUBRE TU PRÓXIMO PLATO FAVORITO Y DISFRÚTALO EN FAMILIA!</h2>
+      </div>
+    </div>
+
+  <div class="slideshow">
+    <img id="imagen-dinamica" src="../imagenes/imagen1.jpg" alt="imagen">
+  </div>
+  </div>
+</section>
+
+
+<section class="filtros">
+  <div class="filtros-titulo">
+    <h3>Filtrar por:</h3>
+    <button class="filtro-boton fondo-icono-filtro" onclick="abrirFiltro()">
+      <img src="../imagenes/filtro.png" class="icono-filtro" alt="Icono filtro">     
+    </button>
+
+    <div class="filtro-rating">
+      <div class="selector-numero">
+        <img src="../imagenes/estrella.png" class= "estrella-filtro" alt ="sestrella filtro">
+        <span id="numero-rating">5</span>
+        <button class="botonrestar" onclick="cambiarNumero(-0.5)">-</button>
+        <button class="botonsumar" onclick="cambiarNumero(0.5)">+</button>
+      </div>
+    </div>
+ <button class="boton-nuevos" onclick="window.location.href='../html/Nuevosrestaurantes.html'">
+  <img src="../imagenes/tienda.png" alt="Tienda" class="icono-tienda">
+  <span>¡Nuevos!</span>
+</button>
+ <button id="btnVerTodos" class="btn-ver-todos">Ver todos</button>
+
+  </div>
+
+<div class="categorias-wrapper">
+  <button class="flecha-scroll" onclick="scrollCategorias(-1)">◀</button>
+  <div class="categorias-scroll" id="categoriaScroll">
+    <button class="boton-categoria" data-categoria="sushi" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/sushi.png" alt="Sushi" class="icono-categoria">
+  <span>Sushi</span>
+</button>
+
+<button class="boton-categoria" data-categoria="pollería" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/polleria.png" alt="Pollería" class="icono-categoria">
+  <span>Pollería</span>
+</button>
+
+<button class="boton-categoria" data-categoria="carnes" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/carnes.png" alt="Carnes" class="icono-categoria">
+  <span>Carnes</span>
+</button>
+
+<button class="boton-categoria" data-categoria="sándwiches" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/sandwich.png" alt="Sándwiches" class="icono-categoria">
+  <span>Sándwiches</span>
+</button>
+
+<button class="boton-categoria" data-categoria="bebidas" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/botella.png" alt="Bebidas" class="icono-categoria">
+  <span>Bebidas</span>
+</button>
+
+<button class="boton-categoria" data-categoria="pizzas" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/pizzas.png" alt="Pizzas" class="icono-categoria">
+  <span>Pizzas</span>
+</button>
+
+<button class="boton-categoria" data-categoria="postres" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/postres.png" alt="Postres" class="icono-categoria">
+  <span>Postres</span>
+</button>
+
+<button class="boton-categoria" data-categoria="tacos" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/tacos.png" alt="Tacos" class="icono-categoria">
+  <span>Tacos</span>
+</button>
+
+<button class="boton-categoria" data-categoria="ensaladas" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/ensaladas.png" alt="Ensaladas" class="icono-categoria">
+  <span>Ensaladas</span>
+</button>
+
+<button class="boton-categoria" data-categoria="helados" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/helados.png" alt="Helados" class="icono-categoria">
+  <span>Helados</span>
+</button>
+
+<button class="boton-categoria" data-categoria="mariscos" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/mariscos.png" alt="Mariscos" class="icono-categoria">
+  <span>Mariscos</span>
+</button>
+  </div>
+  <button class="flecha-scroll" onclick="scrollCategorias(1)">▶</button>
+</div>
+
+
+<div class="grid-platillos-container">
+
+    <!-- Empresa 1 -->
+<!-- Tu tarjeta de platillo -->
+<!-- Tarjeta Rockys -->
+
+
+<button class="card-platillo-boton"
+        data-nombre="Rockys"
+        data-categoria="pollería"
+        data-icono="../imagenes/rockys.png"
+        onclick="irACarta(this)">
+  
+  <img src="../imagenes/polloalabrasa1.jpeg" alt="1 Pollo familiar" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">1 pollo a la brasa + papas + ensalada + gaseosa de 1.5L</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/rockys.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/69.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">5.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Realizar pedido</div>
+  </div>
+</button>
+
+
+
+
+<!-- Empresa 2 - Platillo -->
+<button class="card-platillo-boton"
+        data-nombre="Chinatown"
+        data-categoria="chifa"
+        data-icono="../imagenes/chinatown.png"
+        onclick="irACarta(this)">
+  
+  <img src="../imagenes/chaufa1.JPG" alt="Chaufa" class="imagen-platillo">
+
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">1 porción de Chaufa de pollo</h2>
+
+    <div class="restaurante-info">
+      <img src="../imagenes/chinatown.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Realizar pedido</div>
+  </div>
+</button>
+
+
+
+
+
+
+<!-- Empresa 3 - Platillo -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Chifa El norteñito"
+  data-categoria="chifa"
+  data-icono="../imagenes/logoempresa3.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/aeropuertochifa1.jpeg" alt="Aeropuerto" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Aeropuerto de pollo + gaseosa</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/logoempresa3.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/35.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 4 - Platillo -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Chicken Company"
+  data-categoria="pollería"
+  data-icono="../imagenes/polleriadiego.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/pollocuarto.jpg" alt="1/4 de pollo" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">1/4 de pollo</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/polleriadiego.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+
+<!-- Platillo - Chifacay -->
+<button
+  class="card-platillo-boton"
+  data-nombre="Chifa Central"
+  data-categoria="chifa"
+  data-icono="../imagenes/chifacentral.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/chifacay.webp" alt="Chifacay" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Chifacay</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/chifacentral.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Platillo - Chicharrón de Pescado -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="El Angelo"
+  data-categoria="mariscos"
+  data-icono="../imagenes/elangelo.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/chicharrondepescado.jpg" alt="Chicharrón de Pescado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Chicharrón de Pescado</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/elangelo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Platillo - Makis Especiales -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Roll de Diego"
+  data-categoria="sushi"
+  data-icono="../imagenes/rolldediego.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/makis.jpeg" alt="Makis" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Makis Especiales</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/rolldediego.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Platillo - Parrilla de Carne -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Pollería Don Pollo"
+  data-categoria="parrillas"
+  data-icono="../imagenes/polleriadonpollo.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/parrilla carne.webp" alt="Parrilla" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Parrilla de Carne</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/polleriadonpollo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+  <!-- Empresa 9 -->
+<!-- Platillo - Pizza Familiar -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Pizzería Italia"
+  data-categoria="pizzas"
+  data-icono="../imagenes/pizzalogo.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/pizza.webp" alt="Pizza Familiar" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Pizza Familiar</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/pizzalogo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+<!-- Platillo - Helado -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Postrería Borcelle"
+  data-categoria="postres"
+  data-icono="../imagenes/postrerialogo.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/postrehelad.jpg" alt="Helado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Helado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/postrerialogo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Platillo - Tacos -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Chili's"
+  data-categoria="mexicana"
+  data-icono="../imagenes/chillislogo.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/tacos.jpeg" alt="Tacos" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Tacos</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/chillislogo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Platillo - Ensalada -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="La ensaladeria"
+  data-categoria="ensaladas"
+  data-icono="../imagenes/ensaladareialogo.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/ensalada.jpeg" alt="Ensalada" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ensalada</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/ensaladareialogo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+<!-- Platillo - Sopa Criolla -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Sopas del Perú"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo13.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img13.jpeg" alt="Sopa Criolla" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Sopa Criolla</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo13.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/19.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 14 - Causa Limeña -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Catering"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo14.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img14.jpeg" alt="Causa Limeña" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Causa Limeña</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo14.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/17.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 15 - Papa Rellena -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Papilistas"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo15.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img15.jpeg" alt="Papa Rellena" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Papa Rellena</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo15.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/12.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.3</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 16 - Tacu Tacu con Lomo -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Tacu Tacu"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo16.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img16.jpeg" alt="Tacu Tacu con Lomo" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Tacu Tacu con Lomo</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo16.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/28.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.7</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+
+<!-- Empresa 17 - Ocopa Arequipeña -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Costa y sierra"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo17.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img17.jpeg" alt="Ocopa Arequipeña" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ocopa Arequipeña</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo17.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/15.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.2</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+
+<!-- Empresa 18 - Ají de Gallina -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="El Cortijo"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo18.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img18.jpeg" alt="Ají de Gallina" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ají de Gallina</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo18.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/21.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.6</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+
+<!-- Empresa 19 - Seco con Frejoles -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="La Muralla"
+  data-categoria="Comida arequipeña"
+  data-icono="../imagenes/logo19.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img19.jpeg" alt="Seco con Frejoles" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Seco con Frejoles</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo19.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/26.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.9</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 20 - Chaufa Mixto -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Somos Perú"
+  data-categoria="chifa"
+  data-icono="../imagenes/logo20.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img20.jpeg" alt="Chaufa Mixto" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Chaufa Mixto</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo20.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/22.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.1</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+
+<!-- Empresa 21 - Ceviche Clásico -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Cevichería Tentaciones"
+  data-categoria="mariscos"
+  data-icono="../imagenes/logo21.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img21.jpeg" alt="Ceviche Clásico" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ceviche Clásico</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo21.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/30.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">5.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 22 - Sancochado -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="El gusto criollito"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo22.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img22.jpeg" alt="Sancochado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Sancochado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo22.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/24.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.4</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+
+<!-- Empresa 23 - Pollo al Curry -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Sazon Peruano"
+  data-categoria="internacional"
+  data-icono="../imagenes/logo23.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img23.jpeg" alt="Pollo al Curry" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Pollo al Curry</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo23.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/27.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.2</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+<!-- Empresa 24 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Restaurant"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo24.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img24.jpeg" alt="Arroz Tapado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Arroz Tapado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo24.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/20.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.7</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+<!-- Empresa 25 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Doña Lasagna"
+  data-categoria="italiana"
+  data-icono="../imagenes/logo25.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img25.jpeg" alt="Lasaña de Carne" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Lasaña de Carne</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo25.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/29.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.8</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+<!-- Empresa 26 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="La casita de los Anticuchos"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo26.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img26.jpeg" alt="Anticuchos" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Anticuchos</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo26.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/18.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 27 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Barbeque"
+  data-categoria="italiana"
+  data-icono="../imagenes/logo27.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img27.jpeg" alt="Fetuccini Alfredo" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Fetuccini Alfredo</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo27.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/23.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.8</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 28 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Los criollos"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo28.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img28.jpeg" alt="Carapulcra con Sopa Seca" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Carapulcra con Sopa Seca</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo28.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/19.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.4</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 29 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Cevichería don marino"
+  data-categoria="mariscos"
+  data-icono="../imagenes/logo29.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img29.jpeg" alt="Arroz con Mariscos" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Arroz con Mariscos</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo29.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/32.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">5.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 30 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Oh Peruano"
+  data-categoria="chifa"
+  data-icono="../imagenes/logo30.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img30.jpeg" alt="Tallarín Saltado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Tallarín Saltado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo30.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/22.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+
+<!-- Empresa 31 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Cevicheria Bahia"
+  data-categoria="mariscos"
+  data-icono="../imagenes/logo31.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img31.jpeg" alt="Pescado a lo Macho" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Pescado a lo Macho</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo31.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/36.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+
+<!-- Empresa 32 -->
+<button 
+  class="card-platillo-boton"
+  data-nombre="Esquites"
+  data-categoria="criolla"
+  data-icono="../imagenes/logo32.png"
+  onclick="irACarta(this)">
+  
+  <img src="../imagenes/img32.jpeg" alt="Lomo Saltado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Lomo Saltado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo32.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/29.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.9</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+</div>
+<!--Agregar un texto para los partners-->
+<!--Click para entrar al partner-->
+<div class="unete-sazonapp">
+  <a href="../html/registropartner.html" style="color: inherit; text-decoration: none;">Únete a SAZONAPP!</a>
+</div>
+  </main>
+
+<a href="https://wa.me/+51922401362" target="_blank" class="whatsapp-float">
+  <img src="../imagenes/whatsapp.png" alt="WhatsApp" />
+</a>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/indesscript.js"></script>
+  <footer>
+  <div class="footer-text">
+  © 2025 SazonAPP Inc. All rights reserved.
+</div>
+   </body>
+</html>
