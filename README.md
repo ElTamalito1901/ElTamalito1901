@@ -45,7 +45,7 @@
 
 ###
 
-<p data-importer="text" align="left">🎂 Age: 22<br>Location: Peru<br>🎓 Major: Systems Engineering<br>💻 Role: Student and software developer<br>🚀 Interests: Web development, programming, and technology<br>🌱 Currently learning: Angular, Java, Spring Boot, and PostgreSQL</p>
+<p data-importer="text" align="left">🎂 Age: 22<br>Location: 🇵🇪 Peru<br>🎓 Major: Systems Engineering<br>💻 Role: Student and software developer<br>🚀 Interests: Web development, programming, and technology<br>🌱 Currently learning: Angular, Java, Spring Boot, and PostgreSQL</p>
 
 ###
 
