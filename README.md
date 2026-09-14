@@ -1,11 +1,11 @@
-<div
+
 <h1 align="left">👋 Hi, I'm Angelo Esteban.</h1>
 
 <p align="left">
   Systems Engineering student and aspiring developer, focused on web application development.
 </p>
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" style="max-width: 100%;">
->
+
 
 <div align="left">
   <a href="https://discord.com/users/900122040055504936" target="_blank">
