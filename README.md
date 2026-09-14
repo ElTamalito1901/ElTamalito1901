@@ -45,7 +45,7 @@
 
 ###
 
-<p data-importer="text" align="left">🎂 Age: 22<br>🇵🇪 Location: Peru<br>🎓 Major: Systems Engineering<br>💻 Role: Student and software developer<br>🚀 Interests: Web development, programming, and technology<br>🌱 Currently learning: Angular, Java, Spring Boot, and PostgreSQL</p>
+<p data-importer="text" align="left">🎂 Age: 22<br><img src="https://flagcdn.com/pe.svg" alt="🇵🇪" width="20" height="14" style="vertical-align: middle;"> Location: Peru<br>🎓 Major: Systems Engineering<br>💻 Role: Student and software developer<br>🚀 Interests: Web development, programming, and technology<br>🌱 Currently learning: Angular, Java, Spring Boot, and PostgreSQL</p>
 
 ###
 
