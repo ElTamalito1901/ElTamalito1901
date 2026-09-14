@@ -1,7 +1,5 @@
 <h1 align="left">👋 Hi, I'm Angelo Esteban.</h1>
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" style="max-width: 100%;">
-
 <p align="left">
   Systems Engineering student and aspiring developer, focused on web application development.
 </p>
@@ -38,8 +36,6 @@
     <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/gmail/default.svg" width="52" height="40" alt="gmail logo">
   </a>
 </div>
-
-<br>
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" style="max-width: 100%;">
 
@@ -124,15 +120,13 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" height="40" alt="visual studio logo">
 </div>
 
-<br>
-
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" style="max-width: 100%;">
 
 <div align="center">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=Angelo.Angelo" alt="Profile views">
 </div>
 
-<br>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" style="max-width: 100%;">
 
 <div align="center">
   <a href="https://git.io/streak-stats">
@@ -140,7 +134,7 @@
   </a>
 </div>
 
-<br>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" style="max-width: 100%;">
 
 <div align="center">
   <picture>
