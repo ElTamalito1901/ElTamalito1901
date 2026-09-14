@@ -1,8 +1,8 @@
-<h1 data-importer="text" align="left">👋 Hola, soy Angelo Esteban</h1>
+<h1 data-importer="text" align="left">👋 Hi, I'm Angelo Esteban.</h1>
 
 ###
 
-<p data-importer="text" align="left">Estudiante de Ingeniería de Sistemas y desarrollador en formación, enfocado en el desarrollo de aplicaciones web.</p>
+<p data-importer="text" align="left">Systems Engineering student and aspiring developer, focused on web application development.</p>
 
 ###
 
@@ -41,11 +41,11 @@
 
 ###
 
-<h2 data-importer="text" align="left">Sobre mi</h2>
+<h2 data-importer="text" align="left">About Me</h2>
 
 ###
 
-<p data-importer="text" align="left">🎂 Edad: 22<br>Ubicación: Perú<br>🎓 Carrera: Ingeniería de Sistemas<br>💻 Rol: Estudiante y desarrollador de software<br>🚀 Intereses: Desarrollo web, programación y tecnología<br>🌱 Actualmente aprendiendo: Angular, Java, Spring Boot y PostgreSQL</p>
+<p data-importer="text" align="left">🎂 Age: 22<br>Location: Peru<br>🎓 Major: Systems Engineering<br>💻 Role: Student and software developer<br>🚀 Interests: Web development, programming, and technology<br>🌱 Currently learning: Angular, Java, Spring Boot, and PostgreSQL</p>
 
 ###
 
