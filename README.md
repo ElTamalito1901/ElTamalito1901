@@ -44,7 +44,7 @@
 
 <p align="left">
   🎂 Age: 22<br>
-  🇵🇪 Location: Peru<br>
+  <img src="https://flagcdn.com/w40/pe.png" width="25" alt="Peru flag"> Location: Peru<br>
   🎓 Major: Systems Engineering<br>
   💻 Role: Student and software developer<br>
   🚀 Interests: Web development, programming, and technology<br>
