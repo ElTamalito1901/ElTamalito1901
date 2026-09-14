@@ -121,8 +121,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" height="40" alt="visualstudio logo"  />
 </div>
 
-<a href="https://git.io/streak-stats"><img src="https://github-readme-streak-stats.herokuapp.com?user=ElTamalito1901&theme=dark&timezone=GMT-5&date_format=j%2Fn%5B%2FY%5D" alt="GitHub Streak" /></a>
-
 ###
 
 <div data-importer="profile-views" align="center">
@@ -131,4 +129,5 @@
 
 ###
 
+<a href="https://git.io/streak-stats"><img src="https://github-readme-streak-stats.herokuapp.com?user=ElTamalito1901&theme=dark&timezone=GMT-5&date_format=j%2Fn%5B%2FY%5D" alt="GitHub Streak" /></a>
 
